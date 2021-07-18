@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   items: [],
+  filters: {},
 };
 
 export const orders = createSlice({
@@ -9,32 +10,23 @@ export const orders = createSlice({
   initialState,
   reducers: {
     addItems: (state, { payload }) => ({
+      ...state,
       items: [...state.items, ...payload],
     }),
-    decrement: (state) => {
-      const value = state.value - 1;
-      return {
-        value,
-      };
-    },
-    incrementByAmount: (state, action) => {
-      const value = state.value + action.payload;
-      return {
-        value,
-      };
-    },
+    serachFilter: (state, { payload }) => ({
+      ...state,
+      filters: {
+        ...state.filters,
+        ...payload,
+      },
+    }),
+    clearItems: () => ({ items: [], filters: {} }),
+    clearFilter: (state) => ({ ...state, filters: {} }),
   },
 });
 
-export const { addItems, decrement, incrementByAmount } = orders.actions;
-
-export const selectCount = (state) => state.counter.value;
-
-export const incrementIfOdd = (amount) => (dispatch, getState) => {
-  const currentValue = selectCount(getState());
-  if (currentValue % 2 === 1) {
-    dispatch(incrementByAmount(amount));
-  }
-};
+export const {
+  addItems, serachFilter, clearItems, clearFilter,
+} = orders.actions;
 
 export default orders.reducer;
