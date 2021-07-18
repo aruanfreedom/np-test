@@ -35,15 +35,14 @@ const Orders = () => {
   const dispatch = useDispatch();
 
   const filterItems = useCallback((items, filters) => items.filter((columns) => {
-    const searchText = (rowNum, value) => (value
-      ? columns[rowNum].toLowerCase().search(value) > -1
-      : true);
+    const searchText = (rowNum, value) => (columns[rowNum].toLowerCase().search(value) !== -1);
 
     const searchDate = (rowNum, value) => (value
       ? format(new Date(columns[rowNum]), constants.FORMAT_DATE) === value
       : true);
 
-    return (searchText(rows.name, filters[constants.NAME_OR_EMAIL])
+    return (
+      searchText(rows.name, filters[constants.NAME_OR_EMAIL])
     || searchText(rows.email, filters[constants.NAME_OR_EMAIL]))
     && searchText(rows.meals, filters[constants.MEALS])
     && searchText(rows.status, filters[constants.STATUS])

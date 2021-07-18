@@ -28,7 +28,7 @@ const DateInput = styled.input`
 `;
 
 const OrdersFilter = () => {
-  const { usecase: handleFilter, clear: clearFilter } = useFilter();
+  const { handleFilter, clear: clearFilter } = useFilter();
   const [values, setValues] = useState({
     [constants.NAME_OR_EMAIL]: '',
     [constants.MEALS]: '',
@@ -45,7 +45,7 @@ const OrdersFilter = () => {
   const handleDate = useCallback(({ target: { value } }, nameFilter) => {
     setValues((prevValues) => ({ ...prevValues, [nameFilter]: value }));
     const date = value ? format(new Date(value), constants.FORMAT_DATE) : '';
-    handleFilter({ value: { [constants.DATE]: date } });
+    handleFilter({ value: { [nameFilter]: date } });
   }, []);
 
   const handleClear = useCallback(() => {

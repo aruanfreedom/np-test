@@ -6,7 +6,7 @@ import { serachFilter, clearFilter } from '../reducers/orders';
 const useFilter = () => {
   const dispatch = useDispatch();
 
-  const usecase = useCallback(({ value }) => {
+  const handleFilter = useCallback(({ value }) => {
     dispatch(serachFilter(value));
   }, []);
 
@@ -14,7 +14,7 @@ const useFilter = () => {
     dispatch(clearFilter());
   }, []);
 
-  return { usecase, clear };
+  return { handleFilter, clear };
 };
 
 export default useFilter;
