@@ -45,7 +45,7 @@ const Orders = () => {
 
     return (searchText(rows.name, filters[constants.NAME_OR_EMAIL])
     || searchText(rows.email, filters[constants.NAME_OR_EMAIL]))
-    && searchText(rows.meals, filters[constants.STATUS])
+    && searchText(rows.meals, filters[constants.MEALS])
     && searchText(rows.status, filters[constants.STATUS])
     && searchDate(rows.date, filters[constants.DATE])
     && searchDate(rows.startDate, filters[constants.START_DATE]);
