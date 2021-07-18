@@ -22,6 +22,19 @@ const Empty = styled.tr`
   font-weight: bold;
 `;
 
+const Border = styled.div`
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  padding: 15px 15px 0 15px;
+  margin-bottom: 20px;
+
+  @media (max-width: 1000px) {
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+`;
+
 const rows = {
   date: 1,
   name: 2,
@@ -76,39 +89,41 @@ const Orders = () => {
   }, []);
 
   return (
-    <table className="u-full-width">
-      <thead>
-        <tr>
-          <Td>Date</Td>
-          <Td>Name</Td>
-          <Td>Phone</Td>
-          <Td>Email</Td>
-          <Td>Start date</Td>
-          <Td>Meals</Td>
-          <Td>Invoice status</Td>
-        </tr>
-      </thead>
-      <tbody>
-        {filteredItems.length ? filteredItems.map((item) => {
-          const [, date, name, phone, email, startDate, meals, invoiseStatus] = item;
+    <Border>
+      <table className="u-full-width">
+        <thead>
+          <tr>
+            <Td>Date</Td>
+            <Td>Name</Td>
+            <Td>Phone</Td>
+            <Td>Email</Td>
+            <Td>Start date</Td>
+            <Td>Meals</Td>
+            <Td>Invoice status</Td>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredItems.length ? filteredItems.map((item) => {
+            const [, date, name, phone, email, startDate, meals, invoiseStatus] = item;
 
-          return (
-            <tr key={phone}>
-              <td>{date}</td>
-              <td>{name}</td>
-              <td>{phone}</td>
-              <td>{email}</td>
-              <td>{startDate}</td>
-              <td>{meals}</td>
-              <td>{invoiseStatus}</td>
-              <td>
-                <OrderBtn type="button" className="button-primary u-full-width">order</OrderBtn>
-              </td>
-            </tr>
-          );
-        }) : <Empty>Not data</Empty>}
-      </tbody>
-    </table>
+            return (
+              <tr key={phone}>
+                <td>{date}</td>
+                <td>{name}</td>
+                <td>{phone}</td>
+                <td>{email}</td>
+                <td>{startDate}</td>
+                <td>{meals}</td>
+                <td>{invoiseStatus}</td>
+                <td>
+                  <OrderBtn type="button" className="button-primary u-full-width">order</OrderBtn>
+                </td>
+              </tr>
+            );
+          }) : <Empty>Not data</Empty>}
+        </tbody>
+      </table>
+    </Border>
   );
 };
 

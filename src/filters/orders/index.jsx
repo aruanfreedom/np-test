@@ -113,8 +113,8 @@ const OrdersFilter = () => {
               value={values[constants.STATUS] === '' ? 'true' : values[constants.STATUS]}
               onChange={(e) => handleSearch(e, constants.STATUS)}
             >
-              <option active value="true">True</option>
-              <option value="false">False</option>
+              <option active value="true">paid</option>
+              <option value="false">unpaid</option>
             </select>
           </div>
           <div className="three columns">
